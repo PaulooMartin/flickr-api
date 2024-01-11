@@ -1,0 +1,15 @@
+<%= form_with url: root_path, method: :get do |f| %>
+    <%= f.label :flickr_id, "Enter the User's id" %>
+    <%= f.text_field :flickr_id %> <br>
+    <%= f.submit "Search user" %>
+<% end %>
+
+<% if @user_photos %>
+    <h1>User's public photos</h1>
+    <% @user_photos.each do |photo| %>
+        <% photo_url = Flickr.gen_url(photo,'') %>
+        <a href="<%= photo_url %>">
+            <img src="<%= photo_url %>" />
+        </a>
+    <% end %>
+<% end %>
